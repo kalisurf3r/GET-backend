@@ -5,6 +5,7 @@ const bcrypt = require("bcrypt");
 const sequelize = require("../config/connection");
 const tokenauth = require("../utils/tokenauth");
 require("dotenv").config();
+const { v4: uuidv4 } = require('uuid');
 
 const JWT_SECRET = process.env.JWT_SECRET;
 
@@ -32,12 +33,13 @@ router.post("/signup", async (req, res) => {
   try {
     console.log("Request Body:", req.body);
 
-    // Check if the required fields are present
+    
     if (!req.body.userName || !req.body.password) {
       return res.status(400).json({ message: "Missing userName or password" });
     }
 
     const newUser = await Users.create({
+      id: uuidv4(),
       userName: req.body.userName,
       password: req.body.password,
       profilePic: req.body.profilePic,
