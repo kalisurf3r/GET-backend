@@ -45,7 +45,7 @@ Users.init (
                 return newUserData;
             },
             beforeUpdate: async (updatedUserData) => {
-                if (updatedUserData.password) {
+                if (updatedUserData.password && updatedUserData.previous('password') !== updatedUserData.password) {
                     updatedUserData.password = await bcrypt.hash(updatedUserData.password, 10);
                 }
                 return updatedUserData;

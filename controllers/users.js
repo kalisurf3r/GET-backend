@@ -121,11 +121,19 @@ router.put("/:id", tokenauth, async (req, res) => {
     console.log('user.id:', user.id);
 
     if (user.id === req.user.id) {
-      user.userName = req.body.userName;
-      user.password = req.body.password;
-      user.profilePic = req.body.profilePic;
-
-      await user.save();
+      if (req.body.userName) {
+        user.userName = req.body.userName;
+      }
+      if (req.body.profilePic) {
+        user.profilePic = req.body.profilePic;
+      }
+      if (req.body.password) {
+        const isSamePassword = await bcrypt.compare(req.body.password, user.password);
+        if (!isSamePassword) {
+          user.password = await bcrypt.hash(req.body.password, 10);
+        }
+      }
+           await user.save();
 
       res.status(200).json(user);
     } else {
