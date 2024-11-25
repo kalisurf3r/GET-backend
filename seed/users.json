@@ -1,16 +1,19 @@
 [
     {
         "id": "550e8400-e29b-41d4-a716-446655440000",
+        "email": "admin@admin.com",
         "userName": "admin",
         "password": "admin"
     },
     {
         "id": "550e8400-e29b-41d4-a716-446655440001",
+        "email": "admin1@admin.com",
         "userName": "user",
         "password": "user"
     },
     {
         "id": "550e8400-e29b-41d4-a716-446655440002",
+        "email": "admin2@admin.com",
         "userName": "user2",
         "password": "user2"
     }
