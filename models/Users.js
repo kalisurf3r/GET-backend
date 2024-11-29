@@ -1,6 +1,10 @@
 const { Model, DataTypes } = require("sequelize");
 const sequelize = require("../config/connection");
 const bcrypt = require("bcrypt");
+const sgMail = require('@sendgrid/mail');
+sgMail.setApiKey(process.env.SENDGRID_API_KEY);
+
+
 
 class Users extends Model { }
 
@@ -56,6 +60,26 @@ Users.init (
                     updatedUserData.password = await bcrypt.hash(updatedUserData.password, 10);
                 }
                 return updatedUserData;
+            },
+            afterCreate: async (newUserData) => {
+                const msg = {
+                    to: newUserData.email,
+                    from: 'ayalaarturo925@gmail.com', // Use your verified sender
+                    subject: 'Welcome to Our Service',
+                    text: `Hello ${newUserData.userName}, welcome to our service!`,
+                    html: `<strong>${newUserData.userName}</strong>`,
+                };
+                await sgMail.send(msg);
+            },
+            afterUpdate: async (updatedUserData) => {
+                const msg = {
+                    to: updatedUserData.email,
+                    from: 'ayalaarturo925@gmail.com', // Use your verified sender
+                    subject: 'Your Profile Has Been Updated',
+                    text: `Hello ${updatedUserData.userName}, your profile has been updated.`,
+                    html: `<strong>${updatedUserData.userName}</strong>`,
+                };
+                await sgMail.send(msg);
             },
         },
         }

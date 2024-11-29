@@ -16,5 +16,11 @@
         "email": "admin2@admin.com",
         "userName": "user2",
         "password": "user2"
+    },
+    {
+        "id": "550e8400-e29b-41d4-a716-446655440003",
+        "email": "ayalaarturo925@gmail.com",
+        "userName": "art",
+        "password": "art"
     }
 ]
