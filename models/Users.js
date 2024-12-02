@@ -65,9 +65,9 @@ Users.init (
                 const msg = {
                     to: newUserData.email,
                     from: 'ayalaarturo925@gmail.com', // Use your verified sender
-                    subject: 'Welcome to Our Service',
-                    text: `Hello ${newUserData.userName}, welcome to our service!`,
-                    html: `<strong>${newUserData.userName}</strong>`,
+                    subject: 'Welcome to GET',
+                    text: `Hello ${newUserData.userName}, welcome to our service! We are excited to have you on board.`,
+                    html: `<p>Hello <strong>${newUserData.userName}</strong>,</p><p>Welcome to our service! We are excited to have you on board.</p>`,
                 };
                 await sgMail.send(msg);
             },
@@ -76,8 +76,8 @@ Users.init (
                     to: updatedUserData.email,
                     from: 'ayalaarturo925@gmail.com', // Use your verified sender
                     subject: 'Your Profile Has Been Updated',
-                    text: `Hello ${updatedUserData.userName}, your profile has been updated.`,
-                    html: `<strong>${updatedUserData.userName}</strong>`,
+                    text: `Hello ${updatedUserData.userName}, your profile has been updated. If you did not make this change, please contact support.`,
+                    html: `<p>Hello <strong>${updatedUserData.userName}</strong>,</p><p>Your profile has been updated. If you did not make this change, please contact support.</p>`,
                 };
                 await sgMail.send(msg);
             },

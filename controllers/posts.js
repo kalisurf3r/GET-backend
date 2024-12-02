@@ -5,6 +5,7 @@ const Comments = require("../models/Comments");
 const jwt = require("jsonwebtoken");
 const tokenauth = require("../utils/tokenauth");
 const sendEmail = require("./Sendgrid");
+const Subscribe = require("../models/Subscribe");
 
 /// * create a new post
 router.post("/", tokenauth, async (req, res) => {
@@ -25,12 +26,24 @@ router.post("/", tokenauth, async (req, res) => {
 
     const user = await Users.findByPk(userId);
 
+    // * Get all subscribers
+    const subscribers = await Subscribe.findAll({
+      where: {
+        subscribedToId: userId,
+      },
+      include: [{ model: Users, as: 'Subscriber' }],
+    });
+
     // Send email notification
     const subject = 'New Post Created';
     const text = `Hello ${user.userName}, you have successfully created a new post.`;
     const html = `<strong>Hello ${user.userName}, you have successfully created a new post.</strong>`;
 
-    await sendEmail(user.email, subject, text, html);
+    const emailPromises = subscribers.map(subscriber => 
+      sendEmail(subscriber.Subscriber.email, subject, text, html)
+    );
+
+    await Promise.all(emailPromises);
 
     res.status(200).json(newPost);
   } catch (err) {

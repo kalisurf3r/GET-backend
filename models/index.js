@@ -1,6 +1,7 @@
 const Users = require("./Users");
 const Posts = require("./Posts");
 const Comments = require("./Comments");
+const Subscribe = require("./Subscribe");
 
 // * Create associations
 
@@ -40,4 +41,4 @@ Comments.belongsTo(Users, {
     onDelete: "CASCADE",
 });
 
-module.exports = { Users, Posts, Comments};
+module.exports = { Users, Posts, Comments, Subscribe };

@@ -1,11 +1,15 @@
 const router = require("express").Router();
-const { Users, Posts, Comments} = require("../models");
+const { Users, Posts, Comments, Subscribe} = require("../models");
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
 const sequelize = require("../config/connection");
 const tokenauth = require("../utils/tokenauth");
 require("dotenv").config();
 const { v4: uuidv4 } = require('uuid');
+const sgMail = require('@sendgrid/mail');
+sgMail.setApiKey(process.env.SENDGRID_API_KEY);
+
+
 
 const JWT_SECRET = process.env.JWT_SECRET;
 
@@ -146,5 +150,36 @@ router.put("/:id", tokenauth, async (req, res) => {
     res.status(400).json(err);
   }
 });
+
+// * subscribe to a user
+// * the id in the route is the user id that the current user wants to subscribe to
+router.post("/subscribe/:id", tokenauth, async (req, res) => {
+  try {
+    const subscriber = await Users.findByPk(req.user.id);
+    const subscribedTo = await Users.findByPk(req.params.id);
+
+    const subscription = await Subscribe.create({
+      id: uuidv4(),
+      subscriberId: subscriber.id,
+      subscribedToId: subscribedTo.id,
+    });
+
+    // * Send email notification
+    const msg = {
+      to: subscriber.email,
+      from: 'ayalaarturo925@gmail.com',
+      subject: 'Now Following',
+      text: `Stay up to date with ${subscribedTo.userName}`,
+      html: `<p>Stay up to date with <strong>${subscribedTo.userName}</strong></p>`,
+    };
+
+    await sgMail.send(msg);
+
+    res.status(200).json(subscription);
+  } catch (err) {
+    res.status(400).json(err);
+  }
+});
+
 module.exports = router;
 
