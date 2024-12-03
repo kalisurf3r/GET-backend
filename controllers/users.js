@@ -158,6 +158,18 @@ router.post("/subscribe/:id", tokenauth, async (req, res) => {
     const subscriber = await Users.findByPk(req.user.id);
     const subscribedTo = await Users.findByPk(req.params.id);
 
+    // Check if the subscription already exists
+    const existingSubscription = await Subscribe.findOne({
+      where: {
+        subscriberId: subscriber.id,
+        subscribedToId: subscribedTo.id,
+      },
+    });
+
+    if (existingSubscription) {
+      return res.status(400).json({ message: "Already subscribed to this user." });
+    }
+
     const subscription = await Subscribe.create({
       id: uuidv4(),
       subscriberId: subscriber.id,
@@ -196,6 +208,24 @@ router.delete("/unsubscribe/:id", tokenauth, async (req, res) => {
     });
 
     res.status(200).json({ message: "Unsubscribed successfully" });
+  } catch (err) {
+    res.status(400).json(err);
+  }
+});
+
+// * get all a user's subscriptions
+router.get("/:id/subscriptions", tokenauth, async (req, res) => {
+  try {
+    const user = await Users.findByPk(req.params.id);
+
+    const subscriptions = await Subscribe.findAll({
+      where: {
+        subscriberId: user.id,
+      },
+      include: [{ model: Users, as: 'SubscribedTo' }],
+    });
+
+    res.status(200).json(subscriptions);
   } catch (err) {
     res.status(400).json(err);
   }

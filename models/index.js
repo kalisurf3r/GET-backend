@@ -41,4 +41,11 @@ Comments.belongsTo(Users, {
     onDelete: "CASCADE",
 });
 
+// * for users & subscribers
+Users.hasMany(Subscribe, { foreignKey: 'subscriberId' });
+Users.hasMany(Subscribe, { foreignKey: 'subscribedToId' });
+
+Subscribe.belongsTo(Users, { as: 'Subscriber', foreignKey: 'subscriberId' });
+Subscribe.belongsTo(Users, { as: 'SubscribedTo', foreignKey: 'subscribedToId' });
+
 module.exports = { Users, Posts, Comments, Subscribe };
