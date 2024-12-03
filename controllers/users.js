@@ -181,5 +181,25 @@ router.post("/subscribe/:id", tokenauth, async (req, res) => {
   }
 });
 
+// * unsubscribe to a user
+// * the id in the route is the user id that the current user wants to unsubscribe to
+router.delete("/unsubscribe/:id", tokenauth, async (req, res) => {
+  try {
+    const subscriber = await Users.findByPk(req.user.id);
+    const subscribedTo = await Users.findByPk(req.params.id);
+
+    await Subscribe.destroy({
+      where: {
+        subscriberId: subscriber.id,
+        subscribedToId: subscribedTo.id,
+      },
+    });
+
+    res.status(200).json({ message: "Unsubscribed successfully" });
+  } catch (err) {
+    res.status(400).json(err);
+  }
+});
+
 module.exports = router;
 
