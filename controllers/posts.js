@@ -34,16 +34,25 @@ router.post("/", tokenauth, async (req, res) => {
       include: [{ model: Users, as: 'Subscriber' }],
     });
 
-    // Send email notification
+    // * send email notification to subscribers
+    const subSubject = 'New Post Created';
+    const subText = `Hello, ${user.userName} has created a new post.`;
+    const subHtml = `<strong>Hello, ${user.userName} has created a new post.</strong>`;
+
+    const subEmailPromises = subscribers.map(subscriber => {
+      console.log(`Sending email to subscriber: ${subscriber.Subscriber.email}`);
+      return sendEmail(subscriber.Subscriber.email, subSubject, subText, subHtml);
+    });
+
+    await Promise.all(subEmailPromises);
+
+
+    // * Send email notification to post owner
     const subject = 'New Post Created';
     const text = `Hello ${user.userName}, you have successfully created a new post.`;
     const html = `<strong>Hello ${user.userName}, you have successfully created a new post.</strong>`;
 
-    const emailPromises = subscribers.map(subscriber => 
-      sendEmail(subscriber.Subscriber.email, subject, text, html)
-    );
-
-    await Promise.all(emailPromises);
+    await sendEmail(user.email, subject, text, html);
 
     res.status(200).json(newPost);
   } catch (err) {
