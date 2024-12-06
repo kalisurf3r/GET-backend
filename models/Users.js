@@ -37,6 +37,10 @@ Users.init (
             type: DataTypes.STRING, 
             allowNull: true, 
         },
+        topics: { 
+            type: DataTypes.ARRAY(DataTypes.STRING),
+            allowNull: true, 
+        },
         createdAt: {
             type: DataTypes.DATE,
             allowNull: false,

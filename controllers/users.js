@@ -48,6 +48,7 @@ router.post("/signup", async (req, res) => {
       userName: req.body.userName,
       password: req.body.password,
       profilePic: req.body.profilePic,
+      topics: req.body.topics,
     }, {transaction});
 
     await transaction.commit();
