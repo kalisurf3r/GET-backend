@@ -1,60 +1,64 @@
 const router = require("express").Router();
-const { Users, Posts, Comments, Subscribe} = require("../models");
+const { Users, Posts, Comments, Subscribe } = require("../models");
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
 const sequelize = require("../config/connection");
 const tokenauth = require("../utils/tokenauth");
 require("dotenv").config();
-const { v4: uuidv4 } = require('uuid');
-const sgMail = require('@sendgrid/mail');
+const { v4: uuidv4 } = require("uuid");
+const sgMail = require("@sendgrid/mail");
 sgMail.setApiKey(process.env.SENDGRID_API_KEY);
-
-
 
 const JWT_SECRET = process.env.JWT_SECRET;
 
 // * Middleware to verify JWT
 const verifyToken = (req, res, next) => {
-    const token = req.headers["authorization"];
-    if (!token) {
-      return res.status(403).json({ message: "No token provided" });
+  const token = req.headers["authorization"];
+  if (!token) {
+    return res.status(403).json({ message: "No token provided" });
+  }
+
+  jwt.verify(token, JWT_SECRET, (err, decoded) => {
+    if (err) {
+      console.log("Failed to authorize token", err);
+      return res.status(500).json({ message: "Failed to authenticate token" });
     }
-  
-    jwt.verify(token, JWT_SECRET, (err, decoded) => {
-      if (err) {
-        console.log('Failed to authorize token', err);
-        return res.status(500).json({ message: "Failed to authenticate token" });
-      }
-      req.userId = decoded.id;
-      next();
-    });
-  };
+    req.userId = decoded.id;
+    next();
+  });
+};
 
 // * Create a new user
 router.post("/signup", async (req, res) => {
   const transaction = await sequelize.transaction();
-  
+
   try {
     console.log("Request Body:", req.body);
 
-    
     if (!req.body.userName || !req.body.password) {
       return res.status(400).json({ message: "Missing userName or password" });
     }
 
-    const newUser = await Users.create({
-      id: uuidv4(),
-      email: req.body.email,
-      userName: req.body.userName,
-      password: req.body.password,
-      profilePic: req.body.profilePic,
-      topics: req.body.topics,
-    }, {transaction});
+    const newUser = await Users.create(
+      {
+        id: uuidv4(),
+        email: req.body.email,
+        userName: req.body.userName,
+        password: req.body.password,
+        profilePic: req.body.profilePic,
+        topics: req.body.topics,
+      },
+      { transaction }
+    );
 
     await transaction.commit();
 
     // * Generate JWT
-    const token = jwt.sign({ id: newUser.id, userName: newUser.userName }, JWT_SECRET, { expiresIn: '1h' });
+    const token = jwt.sign(
+      { id: newUser.id, userName: newUser.userName },
+      JWT_SECRET,
+      { expiresIn: "1h" }
+    );
 
     res.status(200).json({ user: newUser, token });
   } catch (err) {
@@ -66,7 +70,6 @@ router.post("/signup", async (req, res) => {
 
 // * Login a user
 router.post("/login", async (req, res) => {
-
   try {
     const user = await Users.findOne({
       where: {
@@ -75,18 +78,25 @@ router.post("/login", async (req, res) => {
     });
 
     if (!user) {
-        return res.status(401).json({ message: "Invalid username or password" });
-      }
-  
-      const isPasswordValid = await bcrypt.compare(req.body.password, user.password);
-      if (!isPasswordValid) {
-        return res.status(401).json({ message: "Invalid username or password" });
-      }
-  
-      // * Generate JWT
-      const token = jwt.sign({ id: user.id, userName: user.userName }, JWT_SECRET, { expiresIn: '1h' });
-      
-      res.status(200).json({ user, token });
+      return res.status(401).json({ message: "Invalid username or password" });
+    }
+
+    const isPasswordValid = await bcrypt.compare(
+      req.body.password,
+      user.password
+    );
+    if (!isPasswordValid) {
+      return res.status(401).json({ message: "Invalid username or password" });
+    }
+
+    // * Generate JWT
+    const token = jwt.sign(
+      { id: user.id, userName: user.userName },
+      JWT_SECRET,
+      { expiresIn: "1h" }
+    );
+
+    res.status(200).json({ user, token });
   } catch (err) {
     res.status(400).json(err);
   }
@@ -95,11 +105,22 @@ router.post("/login", async (req, res) => {
 // * get user by id
 router.get("/:id", async (req, res) => {
   try {
-  
     const user = await Users.findByPk(req.params.id, {
-      include: [{ model: Posts }],
+      include: [
+        {
+          model: Posts, // Fetch associated posts
+          attributes: ["id", "title", "content", "createdAt"], // Specify post fields
+        },
+      ],
+      attributes: [
+        "id",
+        "userName",
+        "email",
+        "profilePic",
+        "password",
+        "topics",
+      ], // Fetch user fields
     });
-
 
     res.status(200).json(user);
   } catch (err) {
@@ -125,8 +146,8 @@ router.put("/:id", tokenauth, async (req, res) => {
   try {
     const user = await Users.findByPk(req.params.id);
 
-    console.log('req.userId:', req.user.id);
-    console.log('user.id:', user.id);
+    console.log("req.userId:", req.user.id);
+    console.log("user.id:", user.id);
 
     if (user.id === req.user.id) {
       if (req.body.userName) {
@@ -136,12 +157,15 @@ router.put("/:id", tokenauth, async (req, res) => {
         user.profilePic = req.body.profilePic;
       }
       if (req.body.password) {
-        const isSamePassword = await bcrypt.compare(req.body.password, user.password);
+        const isSamePassword = await bcrypt.compare(
+          req.body.password,
+          user.password
+        );
         if (!isSamePassword) {
           user.password = await bcrypt.hash(req.body.password, 10);
         }
       }
-           await user.save();
+      await user.save();
 
       res.status(200).json(user);
     } else {
@@ -168,7 +192,9 @@ router.post("/subscribe/:id", tokenauth, async (req, res) => {
     });
 
     if (existingSubscription) {
-      return res.status(400).json({ message: "Already subscribed to this user." });
+      return res
+        .status(400)
+        .json({ message: "Already subscribed to this user." });
     }
 
     const subscription = await Subscribe.create({
@@ -180,8 +206,8 @@ router.post("/subscribe/:id", tokenauth, async (req, res) => {
     // * Send email notification
     const msg = {
       to: subscriber.email,
-      from: 'ayalaarturo925@gmail.com',
-      subject: 'Now Following',
+      from: "ayalaarturo925@gmail.com",
+      subject: "Now Following",
       text: `Stay up to date with ${subscribedTo.userName}`,
       html: `<p>Stay up to date with <strong>${subscribedTo.userName}</strong></p>`,
     };
@@ -223,7 +249,7 @@ router.get("/:id/subscriptions", tokenauth, async (req, res) => {
       where: {
         subscriberId: user.id,
       },
-      include: [{ model: Users, as: 'SubscribedTo' }],
+      include: [{ model: Users, as: "SubscribedTo" }],
     });
 
     res.status(200).json(subscriptions);
@@ -233,4 +259,3 @@ router.get("/:id/subscriptions", tokenauth, async (req, res) => {
 });
 
 module.exports = router;
-
