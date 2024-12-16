@@ -4,27 +4,71 @@
         "email": "admin@admin.com",
         "userName": "admin",
         "password": "admin",
-        "topics": ["React", "JavaScript", "Node"]
+        "topics": [
+            "React",
+            "JavaScript",
+            "Node",
+            "Algorithms",
+            "TypeScript",
+            "GraphQL",
+            "Redux",
+            "Express",
+            "MongoDB",
+            "Testing"
+          ]
     },
     {
         "id": "550e8400-e29b-41d4-a716-446655440001",
         "email": "admin1@admin.com",
         "userName": "user",
         "password": "user",
-        "topics": ["CSS", "HTML", "Python"]
+        "topics":[
+            "CSS",
+            "HTML",
+            "Python",
+            "Data Structures",
+            "Angular",
+            "Next.js",
+            "SQL",
+            "Web Security",
+            "Testing",
+            "Vue"
+          ] 
     },
     {
         "id": "550e8400-e29b-41d4-a716-446655440002",
         "email": "admin2@admin.com",
         "userName": "user2",
         "password": "user2",
-        "topics": ["React", "Data Structures", "Node"]
+        "topics":  [
+            "React",
+            "Data Structures",
+            "Node",
+            "Algorithms",
+            "TypeScript",
+            "Redux",
+            "Next.js",
+            "Express",
+            "MongoDB",
+            "Web Security"
+          ]
     },
     {
         "id": "550e8400-e29b-41d4-a716-446655440003",
         "email": "ayalaarturo925@gmail.com",
         "userName": "art",
         "password": "art",
-        "topics": ["JavaScript", "CSS", "Python"]
+        "topics": [
+            "JavaScript",
+            "CSS",
+            "Python",
+            "Vue",
+            "Angular",
+            "GraphQL",
+            "SQL",
+            "Web Security",
+            "Algorithms",
+            "Testing"
+          ]
     }
 ]

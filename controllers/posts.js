@@ -6,10 +6,12 @@ const jwt = require("jsonwebtoken");
 const tokenauth = require("../utils/tokenauth");
 const sendEmail = require("./Sendgrid");
 const Subscribe = require("../models/Subscribe");
+const { Op } = require("sequelize");
 
 /// * create a new post
 router.post("/", tokenauth, async (req, res) => {
   try {
+    console.log("Received request body:", req.body);
     const userId = req.user.id;
 
     const newPost = await Posts.create({
@@ -22,6 +24,7 @@ router.post("/", tokenauth, async (req, res) => {
       content: req.body.content,
       likes: req.body.likes,
       dislikes: req.body.dislikes,
+      topics: req.body.topics,
     });
 
     const user = await Users.findByPk(userId);
@@ -157,6 +160,25 @@ router.put("/:id", tokenauth, async (req, res) => {
         .json("Error updating post; need to be the owner of the post");
     }
   } catch (err) {
+    res.status(400).json(err);
+  }
+});
+
+// * get all posts by topic
+router.get("/topic/:topic", async (req, res) => {
+  try {
+    const posts = await Posts.findAll({
+      where: {
+        topics: {
+          [Op.contains]: [req.params.topic], // For array or JSONB column
+        },
+      },
+      include: [{ model: Users }],
+    });
+
+    res.status(200).json(posts);
+  } catch (err) {
+    console.error("Error fetching posts by topic:", err);
     res.status(400).json(err);
   }
 });

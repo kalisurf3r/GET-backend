@@ -31,6 +31,10 @@ Posts.init(
             type: DataTypes.INTEGER,
             allowNull: true,
         },
+        topics: {
+            type: DataTypes.ARRAY(DataTypes.STRING),
+            allowNull: true,
+        },
     },
     {
         sequelize,
