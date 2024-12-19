@@ -16,7 +16,7 @@
         "MongoDB",
         "Testing"
       ],
-      "profilePic": "https://res.cloudinary.com/demo/image/upload/v1695656311/admin.jpg"
+      "profilePic":"https://res.cloudinary.com/dpaiwgit7/image/upload/v1724966903/cld-sample-4.jpg"
     },
     {
       "id": "550e8400-e29b-41d4-a716-446655440001",
@@ -35,7 +35,7 @@
         "Testing",
         "Vue"
       ],
-      "profilePic": "https://res.cloudinary.com/demo/image/upload/v1695656311/user.jpg"
+      "profilePic": "https://res.cloudinary.com/dpaiwgit7/image/upload/v1724966903/cld-sample-4.jpg"
     },
     {
       "id": "550e8400-e29b-41d4-a716-446655440002",
@@ -54,7 +54,7 @@
         "MongoDB",
         "Web Security"
       ],
-      "profilePic": "https://res.cloudinary.com/demo/image/upload/v1695656311/user2.jpg"
+      "profilePic": "https://res.cloudinary.com/dpaiwgit7/image/upload/v1724966903/cld-sample-5.jpg"
     },
     {
       "id": "550e8400-e29b-41d4-a716-446655440003",
@@ -73,7 +73,7 @@
         "Algorithms",
         "Testing"
       ],
-      "profilePic": "https://res.cloudinary.com/demo/image/upload/v1695656311/art.jpg"
+      "profilePic": "https://res.cloudinary.com/dpaiwgit7/image/upload/v1724966903/cld-sample-2.jpg"
     },
     {
       "id": "550e8400-e29b-41d4-a716-446655440005",
@@ -92,7 +92,7 @@
         "GraphQL",
         "Algorithms"
       ],
-      "profilePic": "https://res.cloudinary.com/demo/image/upload/v1695656311/frontendguru.jpg"
+      "profilePic": "https://res.cloudinary.com/dpaiwgit7/image/upload/v1724966902/samples/dessert-on-a-plate.jpg"
     },
     {
       "id": "550e8400-e29b-41d4-a716-446655440006",
@@ -111,7 +111,7 @@
         "Testing",
         "Algorithms"
       ],
-      "profilePic": "https://res.cloudinary.com/demo/image/upload/v1695656311/backendmaster.jpg"
+      "profilePic": "https://res.cloudinary.com/dpaiwgit7/image/upload/v1724966902/samples/cup-on-a-table.jpg"
     },
     {
       "id": "550e8400-e29b-41d4-a716-446655440007",
@@ -130,7 +130,7 @@
         "Testing",
         "CSS"
       ],
-      "profilePic": "https://res.cloudinary.com/demo/image/upload/v1695656311/fullstacker.jpg"
+      "profilePic": "https://res.cloudinary.com/dpaiwgit7/image/upload/v1724966902/samples/coffee.jpg"
     },
     {
       "id": "550e8400-e29b-41d4-a716-446655440008",
@@ -149,7 +149,7 @@
         "React",
         "MongoDB"
       ],
-      "profilePic": "https://res.cloudinary.com/demo/image/upload/v1695656311/datascientist.jpg"
+      "profilePic": "https://res.cloudinary.com/dpaiwgit7/image/upload/v1724966901/samples/man-portrait.jpg"
     },
     {
       "id": "550e8400-e29b-41d4-a716-446655440009",
@@ -168,7 +168,7 @@
         "GraphQL",
         "Data Structures"
       ],
-      "profilePic": "https://res.cloudinary.com/demo/image/upload/v1695656311/uiuxdesigner.jpg"
+      "profilePic": "https://res.cloudinary.com/dpaiwgit7/image/upload/v1724966901/samples/chair-and-coffee-table.jpg"
     },
     {
       "id": "550e8400-e29b-41d4-a716-446655440010",
@@ -187,7 +187,7 @@
         "Express",
         "MongoDB"
       ],
-      "profilePic": "https://res.cloudinary.com/demo/image/upload/v1695656311/qatech.jpg"
+      "profilePic": "https://res.cloudinary.com/dpaiwgit7/image/upload/v1724966901/samples/man-on-a-street.jpg"
     },
     {
       "id": "550e8400-e29b-41d4-a716-446655440011",
@@ -206,7 +206,7 @@
         "React",
         "Node"
       ],
-      "profilePic": "https://res.cloudinary.com/demo/image/upload/v1695656311/aiguru.jpg"
+      "profilePic": "https://res.cloudinary.com/dpaiwgit7/image/upload/v1724966900/samples/breakfast.jpg"
     },
     {
       "id": "550e8400-e29b-41d4-a716-446655440012",
@@ -225,6 +225,6 @@
         "TypeScript",
         "Next.js"
       ],
-      "profilePic": "https://res.cloudinary.com/demo/image/upload/v1695656311/projmanager.jpg"
+      "profilePic": "https://res.cloudinary.com/dpaiwgit7/image/upload/v1724966900/samples/smile.jpg"
     }
   ]
