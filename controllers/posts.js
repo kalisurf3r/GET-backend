@@ -7,6 +7,7 @@ const tokenauth = require("../utils/tokenauth");
 const sendEmail = require("./Sendgrid");
 const Subscribe = require("../models/Subscribe");
 const { Op } = require("sequelize");
+const { getLinkPreview } = require("link-preview-js");
 
 /// * create a new post
 router.post("/", tokenauth, async (req, res) => {
@@ -180,6 +181,23 @@ router.get("/topic/:topic", async (req, res) => {
   } catch (err) {
     console.error("Error fetching posts by topic:", err);
     res.status(400).json(err);
+  }
+});
+
+// * get preview of a link
+router.get("/proxy/preview", async (req, res) => {
+  const { url } = req.query;
+
+  if (!url) {
+    return res.status(400).json({ error: "URL is required" });
+  }
+
+  try {
+    const preview = await getLinkPreview(url);
+    res.json(preview);
+  } catch (error) {
+    console.error("Error fetching link preview:", error);
+    res.status(500).json({ error: "Failed to fetch link preview" });
   }
 });
 
