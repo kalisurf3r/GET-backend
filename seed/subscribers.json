@@ -1,10 +1,74 @@
 [
-    {
-      "subscriberId": "550e8400-e29b-41d4-a716-446655440000",
-      "subscribedToId": "550e8400-e29b-41d4-a716-446655440003"
-    },
-    {
-        "subscriberId": "550e8400-e29b-41d4-a716-446655440003",
-        "subscribedToId": "550e8400-e29b-41d4-a716-446655440000"
-      }
+  {
+    "subscriberId": "550e8400-e29b-41d4-a716-446655440000",
+    "subscribedToId": "550e8400-e29b-41d4-a716-446655440003"
+  },
+  {
+    "subscriberId": "550e8400-e29b-41d4-a716-446655440003",
+    "subscribedToId": "550e8400-e29b-41d4-a716-446655440000"
+  },
+  {
+    "subscriberId": "550e8400-e29b-41d4-a716-446655440005",
+    "subscribedToId": "550e8400-e29b-41d4-a716-446655440006"
+  },
+  {
+    "subscriberId": "550e8400-e29b-41d4-a716-446655440005",
+    "subscribedToId": "550e8400-e29b-41d4-a716-446655440007"
+  },
+  {
+    "subscriberId": "550e8400-e29b-41d4-a716-446655440006",
+    "subscribedToId": "550e8400-e29b-41d4-a716-446655440008"
+  },
+  {
+    "subscriberId": "550e8400-e29b-41d4-a716-446655440006",
+    "subscribedToId": "550e8400-e29b-41d4-a716-446655440007"
+  },
+  {
+    "subscriberId": "550e8400-e29b-41d4-a716-446655440007",
+    "subscribedToId": "550e8400-e29b-41d4-a716-446655440005"
+  },
+  {
+    "subscriberId": "550e8400-e29b-41d4-a716-446655440007",
+    "subscribedToId": "550e8400-e29b-41d4-a716-446655440009"
+  },
+  {
+    "subscriberId": "550e8400-e29b-41d4-a716-446655440008",
+    "subscribedToId": "550e8400-e29b-41d4-a716-446655440010"
+  },
+  {
+    "subscriberId": "550e8400-e29b-41d4-a716-446655440008",
+    "subscribedToId": "550e8400-e29b-41d4-a716-446655440011"
+  },
+  {
+    "subscriberId": "550e8400-e29b-41d4-a716-446655440009",
+    "subscribedToId": "550e8400-e29b-41d4-a716-446655440012"
+  },
+  {
+    "subscriberId": "550e8400-e29b-41d4-a716-446655440009",
+    "subscribedToId": "550e8400-e29b-41d4-a716-446655440010"
+  },
+  {
+    "subscriberId": "550e8400-e29b-41d4-a716-446655440010",
+    "subscribedToId": "550e8400-e29b-41d4-a716-446655440005"
+  },
+  {
+    "subscriberId": "550e8400-e29b-41d4-a716-446655440010",
+    "subscribedToId": "550e8400-e29b-41d4-a716-446655440007"
+  },
+  {
+    "subscriberId": "550e8400-e29b-41d4-a716-446655440011",
+    "subscribedToId": "550e8400-e29b-41d4-a716-446655440006"
+  },
+  {
+    "subscriberId": "550e8400-e29b-41d4-a716-446655440011",
+    "subscribedToId": "550e8400-e29b-41d4-a716-446655440009"
+  },
+  {
+    "subscriberId": "550e8400-e29b-41d4-a716-446655440012",
+    "subscribedToId": "550e8400-e29b-41d4-a716-446655440005"
+  },
+  {
+    "subscriberId": "550e8400-e29b-41d4-a716-446655440012",
+    "subscribedToId": "550e8400-e29b-41d4-a716-446655440008"
+  }
 ]

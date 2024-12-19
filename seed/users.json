@@ -1,74 +1,230 @@
 [
     {
-        "id": "550e8400-e29b-41d4-a716-446655440000",
-        "email": "admin@admin.com",
-        "userName": "admin",
-        "password": "admin",
-        "topics": [
-            "React",
-            "JavaScript",
-            "Node",
-            "Algorithms",
-            "TypeScript",
-            "GraphQL",
-            "Redux",
-            "Express",
-            "MongoDB",
-            "Testing"
-          ]
+      "id": "550e8400-e29b-41d4-a716-446655440000",
+      "email": "admin@admin.com",
+      "userName": "admin",
+      "password": "admin",
+      "topics": [
+        "React",
+        "JavaScript",
+        "Node",
+        "Algorithms",
+        "TypeScript",
+        "GraphQL",
+        "Redux",
+        "Express",
+        "MongoDB",
+        "Testing"
+      ],
+      "profilePic": "https://res.cloudinary.com/demo/image/upload/v1695656311/admin.jpg"
     },
     {
-        "id": "550e8400-e29b-41d4-a716-446655440001",
-        "email": "admin1@admin.com",
-        "userName": "user",
-        "password": "user",
-        "topics":[
-            "CSS",
-            "HTML",
-            "Python",
-            "Data Structures",
-            "Angular",
-            "Next.js",
-            "SQL",
-            "Web Security",
-            "Testing",
-            "Vue"
-          ] 
+      "id": "550e8400-e29b-41d4-a716-446655440001",
+      "email": "admin1@admin.com",
+      "userName": "user",
+      "password": "user",
+      "topics": [
+        "CSS",
+        "HTML",
+        "Python",
+        "Data Structures",
+        "Angular",
+        "Next.js",
+        "SQL",
+        "Web Security",
+        "Testing",
+        "Vue"
+      ],
+      "profilePic": "https://res.cloudinary.com/demo/image/upload/v1695656311/user.jpg"
     },
     {
-        "id": "550e8400-e29b-41d4-a716-446655440002",
-        "email": "admin2@admin.com",
-        "userName": "user2",
-        "password": "user2",
-        "topics":  [
-            "React",
-            "Data Structures",
-            "Node",
-            "Algorithms",
-            "TypeScript",
-            "Redux",
-            "Next.js",
-            "Express",
-            "MongoDB",
-            "Web Security"
-          ]
+      "id": "550e8400-e29b-41d4-a716-446655440002",
+      "email": "admin2@admin.com",
+      "userName": "user2",
+      "password": "user2",
+      "topics": [
+        "React",
+        "Data Structures",
+        "Node",
+        "Algorithms",
+        "TypeScript",
+        "Redux",
+        "Next.js",
+        "Express",
+        "MongoDB",
+        "Web Security"
+      ],
+      "profilePic": "https://res.cloudinary.com/demo/image/upload/v1695656311/user2.jpg"
     },
     {
-        "id": "550e8400-e29b-41d4-a716-446655440003",
-        "email": "ayalaarturo925@gmail.com",
-        "userName": "art",
-        "password": "art",
-        "topics": [
-            "JavaScript",
-            "CSS",
-            "Python",
-            "Vue",
-            "Angular",
-            "GraphQL",
-            "SQL",
-            "Web Security",
-            "Algorithms",
-            "Testing"
-          ]
+      "id": "550e8400-e29b-41d4-a716-446655440003",
+      "email": "ayalaarturo925@gmail.com",
+      "userName": "art",
+      "password": "art",
+      "topics": [
+        "JavaScript",
+        "CSS",
+        "Python",
+        "Vue",
+        "Angular",
+        "GraphQL",
+        "SQL",
+        "Web Security",
+        "Algorithms",
+        "Testing"
+      ],
+      "profilePic": "https://res.cloudinary.com/demo/image/upload/v1695656311/art.jpg"
+    },
+    {
+      "id": "550e8400-e29b-41d4-a716-446655440005",
+      "email": "frontend@dev.com",
+      "userName": "frontendguru",
+      "password": "frontend123",
+      "topics": [
+        "CSS",
+        "HTML",
+        "React",
+        "Redux",
+        "TypeScript",
+        "Next.js",
+        "Web Security",
+        "Testing",
+        "GraphQL",
+        "Algorithms"
+      ],
+      "profilePic": "https://res.cloudinary.com/demo/image/upload/v1695656311/frontendguru.jpg"
+    },
+    {
+      "id": "550e8400-e29b-41d4-a716-446655440006",
+      "email": "backend@dev.com",
+      "userName": "backendmaster",
+      "password": "backend123",
+      "topics": [
+        "Node",
+        "Express",
+        "MongoDB",
+        "SQL",
+        "NoSQL",
+        "Web Security",
+        "GraphQL",
+        "Data Structures",
+        "Testing",
+        "Algorithms"
+      ],
+      "profilePic": "https://res.cloudinary.com/demo/image/upload/v1695656311/backendmaster.jpg"
+    },
+    {
+      "id": "550e8400-e29b-41d4-a716-446655440007",
+      "email": "fullstack@dev.com",
+      "userName": "fullstacker",
+      "password": "fullstack123",
+      "topics": [
+        "React",
+        "Node",
+        "Next.js",
+        "TypeScript",
+        "Redux",
+        "GraphQL",
+        "MongoDB",
+        "Web Security",
+        "Testing",
+        "CSS"
+      ],
+      "profilePic": "https://res.cloudinary.com/demo/image/upload/v1695656311/fullstacker.jpg"
+    },
+    {
+      "id": "550e8400-e29b-41d4-a716-446655440008",
+      "email": "data@science.com",
+      "userName": "datascientist",
+      "password": "data123",
+      "topics": [
+        "Python",
+        "Data Structures",
+        "Algorithms",
+        "SQL",
+        "NoSQL",
+        "GraphQL",
+        "Web Security",
+        "Testing",
+        "React",
+        "MongoDB"
+      ],
+      "profilePic": "https://res.cloudinary.com/demo/image/upload/v1695656311/datascientist.jpg"
+    },
+    {
+      "id": "550e8400-e29b-41d4-a716-446655440009",
+      "email": "designer@uiux.com",
+      "userName": "uiuxdesigner",
+      "password": "designer123",
+      "topics": [
+        "CSS",
+        "HTML",
+        "React",
+        "Next.js",
+        "TypeScript",
+        "Redux",
+        "Web Security",
+        "Testing",
+        "GraphQL",
+        "Data Structures"
+      ],
+      "profilePic": "https://res.cloudinary.com/demo/image/upload/v1695656311/uiuxdesigner.jpg"
+    },
+    {
+      "id": "550e8400-e29b-41d4-a716-446655440010",
+      "email": "tester@test.com",
+      "userName": "qatech",
+      "password": "test123",
+      "topics": [
+        "Testing",
+        "Web Security",
+        "Data Structures",
+        "Algorithms",
+        "React",
+        "Node",
+        "GraphQL",
+        "Python",
+        "Express",
+        "MongoDB"
+      ],
+      "profilePic": "https://res.cloudinary.com/demo/image/upload/v1695656311/qatech.jpg"
+    },
+    {
+      "id": "550e8400-e29b-41d4-a716-446655440011",
+      "email": "ai@ml.com",
+      "userName": "aiguru",
+      "password": "ai123",
+      "topics": [
+        "Python",
+        "Algorithms",
+        "Data Structures",
+        "Testing",
+        "Web Security",
+        "GraphQL",
+        "SQL",
+        "NoSQL",
+        "React",
+        "Node"
+      ],
+      "profilePic": "https://res.cloudinary.com/demo/image/upload/v1695656311/aiguru.jpg"
+    },
+    {
+      "id": "550e8400-e29b-41d4-a716-446655440012",
+      "email": "manager@pm.com",
+      "userName": "projmanager",
+      "password": "manager123",
+      "topics": [
+        "React",
+        "Node",
+        "Express",
+        "GraphQL",
+        "MongoDB",
+        "Web Security",
+        "Testing",
+        "Redux",
+        "TypeScript",
+        "Next.js"
+      ],
+      "profilePic": "https://res.cloudinary.com/demo/image/upload/v1695656311/projmanager.jpg"
     }
-]
+  ]
