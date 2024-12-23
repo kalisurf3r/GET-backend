@@ -64,6 +64,24 @@ router.post("/", tokenauth, async (req, res) => {
   }
 });
 
+// * delete a post
+router.delete("/:id", tokenauth, async (req, res) => {
+  try {
+    const post = await Posts.findByPk(req.params.id);
+
+    if (post.user_id === req.user.id) {
+      await post.destroy();
+      res.status(200).json("Post deleted");
+    } else {
+      res
+        .status(401)
+        .json("Error deleting post; need to be the owner of the post");
+    }
+  } catch (err) {
+    res.status(400).json(err);
+  }
+});
+
 // * get all posts
 router.get("/", async (req, res) => {
   try {
