@@ -59,12 +59,7 @@ Users.init (
                 newUserData.password = await bcrypt.hash(newUserData.password, 10);
                 return newUserData;
             },
-            beforeUpdate: async (updatedUserData) => {
-                if (updatedUserData.password && updatedUserData.previous('password') !== updatedUserData.password) {
-                    updatedUserData.password = await bcrypt.hash(updatedUserData.password, 10);
-                }
-                return updatedUserData;
-            },
+            
             afterCreate: async (newUserData) => {
                 const msg = {
                     to: newUserData.email,

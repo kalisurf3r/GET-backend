@@ -149,7 +149,13 @@ router.put("/:id", tokenauth, async (req, res) => {
     console.log("req.userId:", req.user.id);
     console.log("user.id:", user.id);
 
+    
+
+
     if (user.id === req.user.id) {
+      if (req.body.email) {
+        user.email = req.body.email;
+      }
       if (req.body.userName) {
         user.userName = req.body.userName;
       }
@@ -157,16 +163,11 @@ router.put("/:id", tokenauth, async (req, res) => {
         user.profilePic = req.body.profilePic;
       }
       if (req.body.password) {
-        const isSamePassword = await bcrypt.compare(
-          req.body.password,
-          user.password
-        );
-        if (!isSamePassword) {
-          user.password = await bcrypt.hash(req.body.password, 10);
-        }
+        const hashedPassword = await bcrypt.hash(req.body.password, 10);
+        user.password = hashedPassword;
       }
       await user.save();
-
+      await user.reload();
       res.status(200).json(user);
     } else {
       res.status(401).json({ message: "Unauthorized" });
