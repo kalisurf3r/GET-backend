@@ -6,28 +6,29 @@ const jwt = require("jsonwebtoken");
 const tokenauth = require("../utils/tokenauth");
 
 // * create a new comment
-router.post("/", tokenauth, async (req, res) => {
+router.post("/", async (req, res) => {
   try {
+    const { user_id, post_id, date, content, likes } = req.body;
 
-    const userId = req.user.id;
+    if (!user_id || !post_id || !content) {
+      return res.status(400).json({ error: "Required fields are missing" });
+    }
 
     const newComment = await Comments.create({
-      // in insomnia, the user_id is not
-      // required because we are getting
-      // the user_id from the token
-      user_id: userId,
-      post_id: req.body.post_id,
-      date: req.body.date,
-      title: req.body.title,
-      content: req.body.content,
+      user_id,
+      post_id,
+      date: date ? new Date(date) : new Date(),
+      content,
+      likes: likes || 0,
     });
 
-    res.status(200).json(newComment);
-  } catch (err) {
-    console.error(err);
-    res.status(400).json(err);
+    res.status(201).json(newComment);
+  } catch (error) {
+    console.error("Error creating comment:", error);
+    res.status(500).json({ error: "Failed to create comment", details: error });
   }
 });
+
 
 // * get all comments for a post
 router.get("/:post_id", async (req, res) => {

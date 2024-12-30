@@ -6,11 +6,10 @@ class Comments extends Model { }
 Comments.init(
     {
         id: {
-            type: DataTypes.INTEGER,
-            allowNull: false,
+            type: DataTypes.UUID,
+            defaultValue: DataTypes.UUIDV4,
             primaryKey: true,
-            autoIncrement: true,
-        },
+          },
         date: {
             type: DataTypes.DATE,
             allowNull: false,

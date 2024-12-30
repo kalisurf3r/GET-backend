@@ -60,16 +60,16 @@ Users.init (
                 return newUserData;
             },
             
-            afterCreate: async (newUserData) => {
-                const msg = {
-                    to: newUserData.email,
-                    from: 'ayalaarturo925@gmail.com', // Use your verified sender
-                    subject: 'Welcome to GET',
-                    text: `Hello ${newUserData.userName}, welcome to our service! We are excited to have you on board.`,
-                    html: `<p>Hello <strong>${newUserData.userName}</strong>,</p><p>Welcome to our service! We are excited to have you on board.</p>`,
-                };
-                await sgMail.send(msg);
-            },
+            // afterCreate: async (newUserData) => {
+            //     const msg = {
+            //         to: newUserData.email,
+            //         from: 'ayalaarturo925@gmail.com', // Use your verified sender
+            //         subject: 'Welcome to GET',
+            //         text: `Hello ${newUserData.userName}, welcome to our service! We are excited to have you on board.`,
+            //         html: `<p>Hello <strong>${newUserData.userName}</strong>,</p><p>Welcome to our service! We are excited to have you on board.</p>`,
+            //     };
+            //     await sgMail.send(msg);
+            // },
             afterUpdate: async (updatedUserData) => {
                 const msg = {
                     to: updatedUserData.email,
