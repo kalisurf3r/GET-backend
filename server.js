@@ -1,3 +1,5 @@
+require("dotenv").config();
+
 const sequelize = require("./config/connection");
 const express = require("express");
 const PORT = process.env.PORT || 3004;
@@ -21,6 +23,8 @@ app.use((req, res, next) => {
     next();
   });
 app.use(routes);
+
+
 
 sequelize.sync({ force: false })
     .then(() => {
