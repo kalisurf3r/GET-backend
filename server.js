@@ -8,11 +8,22 @@ const path = require("path");
 const cors = require("cors");
 
 const app = new express();
+
+const allowedOrigins = [
+  "http://localhost:5173", // Local development frontend
+  "https://get-frontend.onrender.com", // Deployed frontend
+];
+
 const corsOptions = {
-    origin: "http://localhost:5173", // Frontend origin
-    methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
-    credentials: true,
-  };
+  origin: function (origin, callback) {
+    if (allowedOrigins.includes(origin) || !origin) {
+      callback(null, true); // Allow requests from valid origins or non-browser clients
+    } else {
+      callback(new Error("Not allowed by CORS"));
+    }
+  },
+  credentials: true, // Allow cookies or authorization headers
+};
   app.use(cors(corsOptions));
   app.options("*", cors(corsOptions));
 
