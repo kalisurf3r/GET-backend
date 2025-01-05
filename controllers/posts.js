@@ -69,16 +69,24 @@ router.delete("/:id", tokenauth, async (req, res) => {
   try {
     const post = await Posts.findByPk(req.params.id);
 
-    if (post.user_id === req.user.id) {
-      await post.destroy();
-      res.status(200).json("Post deleted");
-    } else {
-      res
-        .status(401)
-        .json("Error deleting post; need to be the owner of the post");
+    // Check if post exists
+    if (!post) {
+      return res.status(404).json({ error: "Post not found" });
     }
+
+    // Check if the user is authorized to delete the post
+    if (post.user_id !== req.user.id) {
+      return res
+        .status(401)
+        .json({ error: "Unauthorized: You can only delete your own posts" });
+    }
+
+    // Delete the post
+    await post.destroy();
+    return res.status(200).json({ message: "Post successfully deleted" });
   } catch (err) {
-    res.status(400).json(err);
+    console.error("Error deleting post:", err);
+    return res.status(500).json({ error: "Internal Server Error" });
   }
 });
 

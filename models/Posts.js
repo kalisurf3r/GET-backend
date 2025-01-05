@@ -15,6 +15,10 @@ Posts.init(
             type: DataTypes.DATE,
             allowNull: false,
         },
+        title: {
+            type: DataTypes.STRING,
+            allowNull: false,
+        },
         content: {
             type: DataTypes.STRING,
             allowNull: false,
